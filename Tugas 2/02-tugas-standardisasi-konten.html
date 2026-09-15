@@ -4,6 +4,96 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Daftar Publikasi Penelitian Dosen</title>
+<style>
+  :root {
+    --red01: #960018;
+    --red02: #670010;
+    --grey: #8a8f92;
+    --border: #000000;
+    --text: #2b2b2b;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+    color: var(--text);
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 24px 32px 60px;
+    line-height: 1.55;
+  }
+  header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    border-bottom: 4px solid var(--red01);
+    padding-bottom: 16px;
+    margin-bottom: 28px;
+  }
+  header .logo { flex-shrink: 0; }
+  header h1 {
+    color: var(--red01);
+    font-size: 1.7rem;
+    margin: 0 0 4px 0;
+  }
+  header p {
+    margin: 0;
+    color: var(--red02);
+    font-weight: 600;
+    letter-spacing: 0.03em;
+  }
+  h2 {
+    color: var(--red01);
+    border-left: 6px solid var(--red02);
+    padding-left: 10px;
+    margin-top: 40px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 16px;
+    font-size: 0.95rem;
+  }
+  caption {
+    text-align: left;
+    font-weight: 600;
+    color: var(--red01);
+    margin-bottom: 8px;
+  }
+  thead th {
+    background-color: var(--red01);
+    border: 1px solid var(--border);
+    color: #fff;
+    padding: 10px 8px;
+    text-align: center;
+  }
+  tbody th, tbody td {
+    border: 1px solid var(--border);
+    padding: 8px;
+    vertical-align: top;
+  }
+  tbody th[scope="row"] {
+    background-color: var(--grey);
+    text-align: left;
+  }
+  tbody th[scope="rowgroup"] {
+    background-color: var(--grey);
+    font-style: italic;
+  }
+  tfoot td {
+    border: 1px solid var(--border);
+    padding: 8px;
+    background-color: var(--grey);
+    font-size: 0.85rem;
+  }
+  footer {
+    margin-top: 40px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+    font-size: 0.85rem;
+    color: #666;
+    text-align: center;
+  }
+</style>
 </head>
 <body>
 
