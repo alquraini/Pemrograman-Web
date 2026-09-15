@@ -97,7 +97,25 @@
     margin-top: 6px;
   }
   .expertise ul li { margin-bottom: 4px; }
-  
+
+  figure {
+    background-color: var(--grey);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+    margin: 20px 0;
+  }
+  figcaption {
+    margin-top: 10px;
+    font-size: 0.9rem;
+    color: var(--red02);
+    font-weight: 600;
+  }
+  .flow-box { fill: #fff; stroke: var(--red02); stroke-width: 2; }
+  .flow-text { font-family: inherit; font-size: 13px; fill: var(--red01); }
+  .flow-arrow { stroke: var(--red01); stroke-width: 2; marker-end: url(#arrowhead); }
+
   footer {
     margin-top: 40px;
     padding-top: 16px;
@@ -200,6 +218,32 @@
         </ul>
       </li>
     </ol>
+  </section>
+
+    <section id="metodologi">
+    <h2>Metodologi Riset</h2>
+    <figure>
+      <svg viewBox="0 0 720 140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagram alur metodologi riset">
+        <defs>
+          <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" fill="#960018"/>
+          </marker>
+        </defs>
+        <rect class="flow-box" x="10" y="45" width="130" height="50" rx="6"/>
+        <text class="flow-text" x="75" y="75" text-anchor="middle">Studi Literatur</text>
+        <line class="flow-arrow" x1="140" y1="70" x2="175" y2="70"/>
+        <rect class="flow-box" x="180" y="45" width="130" height="50" rx="6"/>
+        <text class="flow-text" x="245" y="75" text-anchor="middle">Pengumpulan Data</text>
+        <line class="flow-arrow" x1="310" y1="70" x2="345" y2="70"/>
+        <rect class="flow-box" x="350" y="45" width="130" height="50" rx="6"/>
+        <text class="flow-text" x="415" y="75" text-anchor="middle">Analisis &amp; Model</text>
+        <line class="flow-arrow" x1="480" y1="70" x2="515" y2="70"/>
+        <rect class="flow-box" x="520" y="45" width="130" height="50" rx="6"/>
+        <text class="flow-text" x="585" y="68" text-anchor="middle">Validasi &amp;</text>
+        <text class="flow-text" x="585" y="84" text-anchor="middle">Publikasi</text>
+      </svg>
+      <figcaption>Gambar 1. Alur umum metodologi riset yang diterapkan oleh kelompok dosen peneliti</figcaption>
+    </figure>
   </section>
 
 <footer>
