@@ -64,3 +64,21 @@ body {
   color: var(--clr-muted);
   font-size: 0.85rem;
 }
+
+/* 3. BLOCK: media-card (pola BEM) */
+.media-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 40px;
+  border-radius: var(--radius-lg);
+  padding: 8px;
+}
+
+.media-card__player {
+  flex: 0 0 38%;
+  max-width: 550px;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background-color: #000;
+}
