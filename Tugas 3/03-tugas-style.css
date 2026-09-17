@@ -65,13 +65,26 @@ body {
   font-size: 0.85rem;
 }
 
-/* 3. BLOCK: media-card (pola BEM) */
+/* 3. BLOCK: media-card (pola BEM)
+   Block   : media-card
+   Element : media-card__player, media-card__body,
+             media-card__author, media-card__avatar,
+             media-card__avatar-img, media-card__author-name,
+             media-card__title, media-card__desc, media-card__audio
+   Modifier: media-card--penting */
+
 .media-card {
   display: flex;
   align-items: flex-start;
   gap: 40px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
   border-radius: var(--radius-lg);
   padding: 8px;
+}
+
+.media-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.1);
 }
 
 .media-card__player {
