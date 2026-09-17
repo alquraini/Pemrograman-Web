@@ -3,7 +3,7 @@
 ## Deskripsi
 Komponen kartu multimedia untuk platform e-learning kampus. Kartu responsif
 memuat pemutar video (poster + dua format cadangan), pemutar audio (dua
-format cadangan), dan foto dosen dengan picture art direction.
+format cadangan), dan foto dosen (contoh anonymous) dengan picture art direction.
 
 ## Berkas
 - 03-tugas-media-dan-css.html — markup dua kartu media (Python & SQL)
