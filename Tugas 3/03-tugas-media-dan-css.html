@@ -15,27 +15,36 @@
 
 <main class="page-main">
     <main class="page-main">
-    <article class="media-card">
+      <article class="media-card">
 
         <video class="media-card__player" controls poster="assets/Card-Python.png">
-        <source src="assets/python.webm" type="video/webm">
-        <source src="assets/python.mp4" type="video/mp4">
-        Peramban Anda tidak mendukung pemutaran video HTML5.
+          <source src="assets/python.webm" type="video/webm">
+          <source src="assets/python.mp4" type="video/mp4">
+          Peramban Anda tidak mendukung pemutaran video HTML5.
         </video>
 
-         <div class="media-card__body">
-           <h2 class="media-card__title">Dasar-Dasar Python</h2>
-           <p class="media-card__desc">Pengenalan sintaks dasar Python: variabel, tipe data, struktur kontrol, dan fungsi, sebagai fondasi sebelum masuk ke topik lanjutan.</p>
+        <div class="media-card__body">
+          <div class="media-card__author">
+            <!-- Foto dosen: art direction, potongan berbeda utk layar sempit/lebar -->
+            <picture class="media-card__avatar">
+              <source srcset="assets/anonymous-unhas-small.webp" media="(max-width: 599px)" type="image/webp">
+              <source srcset="assets/anonymous-unhas-large.webp" media="(min-width: 600px)" type="image/webp">
+              <img src="assets/anonymous-unhas.jpg" alt="Foto Dosen Pengampu" class="media-card__avatar-img">
+            </picture>
+            <span class="media-card__author-name">Ir. Anugrayani Bustamin, S.T., M.T.</span>
+          </div>
 
-           <div class="media-card__audio">
-             <audio controls preload="none">
-               <source src="assets/python-audio.weba" type="audio/webm">
-               <source src="assets/python-audio.mp3" type="audio/mpeg">
-               Peramban Anda tidak mendukung pemutaran audio HTML5.
-             </audio>
-            </div>
-         </div>   
+          <h2 class="media-card__title">Dasar-Dasar Python</h2>
+          <p class="media-card__desc">Pengenalan sintaks dasar Python: variabel, tipe data, struktur kontrol, dan fungsi, sebagai fondasi sebelum masuk ke topik lanjutan.</p>
 
+          <div class="media-card__audio">
+            <audio controls preload="none">
+              <source src="assets/python-audio.weba" type="audio/webm">
+              <source src="assets/python-audio.mp3" type="audio/mpeg">
+              Peramban Anda tidak mendukung pemutaran audio HTML5.
+            </audio>
+          </div>
+        </div>   
     </article>
 </main>
 </main>
