@@ -152,3 +152,14 @@ body {
   width: 100%;
   height: 46px;
 }
+
+/* 4. BUKTI SPESIFISITAS — sengaja tanpa !important. Selektor gabungan
+   di bawah (0,0,3,0) sudah lebih spesifik dari .media-card__desc
+   (0,0,1,0), jadi otomatis menang untuk kartu .media-card--penting */
+.media-card.media-card--penting .media-card__desc {
+  color: var(--clr-red-dark);
+  font-weight: 700;
+  font-style: italic;
+  border-left: 3px solid var(--clr-red-dark);
+  padding-left: 10px;
+}
