@@ -69,3 +69,42 @@ a {
     margin-top: 0.75rem;
   }
 }
+
+/* Layout Utama */
+.main-layout {
+  display: grid;
+  gap: 1.25rem;
+  padding: 1.5rem;
+
+  /* Default (mobile-first): satu kolom */
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "sidebar"
+    "articles"
+    "right";
+}
+
+.sidebar {
+  grid-area: sidebar;
+  background-color: #ffffff;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.article-list {
+  grid-area: articles;
+}
+
+.right-column {
+  grid-area: right;
+}
+
+/* Desktop: grid 3 kolom (992px+) */
+@media (min-width: 992px) {
+  .main-layout {
+    grid-template-columns: 200px 1fr 220px;
+    grid-template-areas: "sidebar articles right";
+    align-items: start;
+  }
+}
