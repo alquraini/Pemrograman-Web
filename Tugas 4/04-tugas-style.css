@@ -119,6 +119,23 @@ a {
   color: #0d6efd;
 }
 
+/* Article Grid */
+.article-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+}
+
+.article-card {
+  height: 100%;
+  border: none;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.article-card .card-title {
+  min-height: 2.6em;
+}
+
 /* Desktop: grid 3 kolom (992px+) */
 @media (min-width: 992px) {
   .main-layout {
