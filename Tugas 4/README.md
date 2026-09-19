@@ -18,5 +18,3 @@ dan tata letak tiga kolom yang responsif.
   - Tablet (768–991px): kolom kanan turun ke bawah sebagai strip horizontal.
   - Tablet kecil (577–767px): kolom kanan disembunyikan.
   - Ponsel (≤576px): seluruh layout bertumpuk satu kolom.
-
-## Struktur Berkas
