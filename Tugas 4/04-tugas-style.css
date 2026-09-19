@@ -161,3 +161,56 @@ a {
     align-items: start;
   }
 }
+
+/* Responsive Tablet: 768px - 991px */
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .main-layout {
+    grid-template-columns: 200px 1fr;
+    grid-template-areas:
+      "sidebar articles"
+      "right    right";
+  }
+
+  .right-column {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .right-column .widget-box {
+    flex: 1;
+  }
+
+  .right-column .mt-4 {
+    margin-top: 0 !important;
+  }
+}
+
+/* Opsi: sembunyikan kolom kanan sepenuhnya di tablet kecil (577px - 767px) */
+@media (min-width: 577px) and (max-width: 767.98px) {
+  .main-layout {
+    grid-template-columns: 200px 1fr;
+    grid-template-areas:
+      "sidebar articles";
+  }
+
+  .right-column {
+    display: none;
+  }
+}
+
+/* Responsive Phone: 576px */
+@media (max-width: 576px) {
+  .main-layout {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "sidebar"
+      "articles"
+      "right";
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .right-column {
+    display: block;
+  }
+}
