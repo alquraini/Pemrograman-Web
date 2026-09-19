@@ -220,3 +220,11 @@ a {
   color: #ffffff;
   font-weight: 600;
 }
+
+/* Footer */
+.site-footer {
+  text-align: center;
+  padding: 24px;
+  color: #6b6b6b;
+  font-size: 0.85rem;
+}
