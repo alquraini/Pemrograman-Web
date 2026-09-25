@@ -11,3 +11,11 @@ if (!isset($_SESSION['balance'])) {
 if (!isset($_SESSION['history'])) {
     $_SESSION['history'] = [];
 }
+
+// Generate CSRF token jika belum ada
+if (empty($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
+
+$errors = [];
+$success = null;
