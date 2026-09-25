@@ -37,4 +37,13 @@ class Transaction
             default => throw new InvalidArgumentException('Jenis transaksi tidak dikenali.'),
         };
     }
+
+    //Memproses logika penarikan saldo (withdrawal).
+    private function processWithdrawal(float $currentBalance): float
+    {
+        if ($this->amount > $currentBalance) {
+            throw new RuntimeException('Saldo tidak mencukupi untuk melakukan penarikan.');
+        }
+        return $currentBalance - $this->amount;
+    }
 }
