@@ -26,4 +26,15 @@ class Transaction
     {
         return $this->amount;
     }
+
+    //Memproses transaksi terhadap saldo saat ini.
+    //Mengembalikan saldo baru, atau melempar exception jika saldo tidak cukup.
+    public function process(float $currentBalance): float
+    {
+        return match ($this->type) {
+            'deposit' => $currentBalance + $this->amount,
+            'withdrawal' => $this->processWithdrawal($currentBalance),
+            default => throw new InvalidArgumentException('Jenis transaksi tidak dikenali.'),
+        };
+    }
 }
