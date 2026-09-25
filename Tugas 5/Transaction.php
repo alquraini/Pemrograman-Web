@@ -46,4 +46,14 @@ class Transaction
         }
         return $currentBalance - $this->amount;
     }
+
+    //Mengonversi objek transaksi menjadi array terstruktur.
+    public function toArray(): array
+    {
+        return [
+            'id' => $this->id,
+            'type' => $this->type,
+            'amount' => $this->amount,
+        ];
+    }
 }
