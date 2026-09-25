@@ -19,3 +19,22 @@ if (empty($_SESSION['csrf_token'])) {
 
 $errors = [];
 $success = null;
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+    // 1. Validasi CSRF token
+    $tokenFromForm = $_POST['csrf_token'] ?? '';
+    if (!hash_equals($_SESSION['csrf_token'], $tokenFromForm)) {
+        $errors[] = 'Token CSRF tidak valid. Silakan muat ulang halaman.';
+    }
+
+    // 2. Validasi jenis transaksi (whitelist, dicocokkan lewat match)
+    $typeInput = $_POST['type'] ?? '';
+    $type = match ($typeInput) {
+        'deposit', 'withdrawal' => $typeInput,
+        default => null,
+    };
+    if ($type === null) {
+        $errors[] = 'Jenis transaksi tidak valid.';
+    }
+}
