@@ -11,8 +11,34 @@ class GuestBook
     }
 
     /**
+     * Validasi masukan. Mengembalikan array error (kosong jika valid).
+    */
+    public function validasi(string $nama, string $email, string $pesan): array
+    {
+        $errors = [];
+
+        if ($nama === '') {
+            $errors['nama'] = 'Nama tidak boleh kosong.';
+        } elseif (mb_strlen($nama) > 100) {
+            $errors['nama'] = 'Nama maksimal 100 karakter.';
+        }
+
+        if (filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
+            $errors['email'] = 'Format email tidak valid.';
+        } elseif (mb_strlen($email) > 150) {
+            $errors['email'] = 'Email maksimal 150 karakter.';
+        }
+
+        if (mb_strlen($pesan) < 5) {
+            $errors['pesan'] = 'Pesan minimal 5 karakter.';
+        }
+
+        return $errors;
+    }
+
+    /**
      * Simpan pesan memakai prepared statement (INSERT).
-     */
+    */
     public function simpan(string $nama, string $email, string $pesan): bool
     {
         $sql = "INSERT INTO buku_tamu (nama, email, pesan)
