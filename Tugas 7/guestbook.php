@@ -31,6 +31,26 @@ function e(string $str): string
 $errors = [];
 $old = ['nama' => '', 'email' => '', 'pesan' => ''];
 
+/* Proses form */
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $old['nama']  = trim((string)($_POST['nama']  ?? ''));
+    $old['email'] = trim((string)($_POST['email'] ?? ''));
+    $old['pesan'] = trim((string)($_POST['pesan'] ?? ''));
+
+    $errors = $guestbook->validasi($old['nama'], $old['email'], $old['pesan']);
+
+    if (empty($errors)) {
+        try {
+            $guestbook->simpan($old['nama'], $old['email'], $old['pesan']);
+            $old = ['nama' => '', 'email' => '', 'pesan' => ''];
+        } catch (PDOException $e) {
+            error_log($e->getMessage());
+            $errors['umum'] = 'Terjadi kesalahan saat menyimpan pesan.';
+        }
+    }
+}
+
 $daftarPesan = $guestbook->ambilSemua();
 ?>
 <!DOCTYPE html>
@@ -113,6 +133,7 @@ $daftarPesan = $guestbook->ambilSemua();
         .btn:hover { filter: brightness(1.12); }
 
         .error { display: block; color: #b00020; font-size: 0.82rem; margin-top: 6px; }
+        .alert { background: #fdecea; color: #b00020; padding: 10px 14px; border-radius: 8px; margin-bottom: 20px; }
 
         /* Tabel */
         h2.judul { font-size: 0.95rem; margin: 36px 0 12px 2px; }
@@ -143,6 +164,9 @@ $daftarPesan = $guestbook->ambilSemua();
     </div>
 
     <div class="container">
+        <?php if (isset($errors['umum'])): ?>
+            <div class="alert"><?= e($errors['umum']) ?></div>
+        <?php endif; ?>
 
         <form method="post" action="guestbook.php" novalidate>
             <div class="row">
