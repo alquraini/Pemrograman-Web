@@ -28,6 +28,9 @@ function e(string $str): string
     return htmlspecialchars($str, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
 }
 
+$errors = [];
+$old = ['nama' => '', 'email' => '', 'pesan' => ''];
+
 $daftarPesan = $guestbook->ambilSemua();
 ?>
 <!DOCTYPE html>
@@ -62,6 +65,55 @@ $daftarPesan = $guestbook->ambilSemua();
 
         .container { max-width: 700px; margin: 30px auto; padding: 0 16px; }
 
+        /* Kartu form */
+        .card {
+            border: 1px solid var(--garis);
+            border-radius: 14px;
+            padding: 16px 16px 18px;
+        }
+        .row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 36px;
+            margin-bottom: 30px;
+        }
+        .card label {
+            display: block;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin: 0 0 10px 2px;
+        }
+        .card input,
+        .card textarea {
+            width: 100%;
+            padding: 11px 14px;
+            border: 1px solid var(--garis);
+            border-radius: 5px;
+            background: var(--input);
+            font: inherit;
+            font-size: 0.9rem;
+        }
+        .card textarea { height: 100px; resize: vertical; }
+        .card input::placeholder,
+        .card textarea::placeholder { color: #8c8c8c; }
+        .card input:focus,
+        .card textarea:focus { outline: 2px solid var(--biru); background: #fff; }
+
+        .btn-wrap { text-align: center; margin-top: 14px; }
+        .btn {
+            background: var(--biru);
+            color: #fff;
+            border: 0;
+            border-radius: 999px;
+            padding: 10px 52px;
+            font: inherit;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .btn:hover { filter: brightness(1.12); }
+
+        .error { display: block; color: #b00020; font-size: 0.82rem; margin-top: 6px; }
+
         /* Tabel */
         h2.judul { font-size: 0.95rem; margin: 36px 0 12px 2px; }
         .tabel-wrap {
@@ -78,6 +130,7 @@ $daftarPesan = $guestbook->ambilSemua();
         td.kosong { text-align: center; color: #666; padding: 28px 12px; }
 
         @media (max-width: 640px) {
+            .row { grid-template-columns: 1fr; gap: 20px; margin-bottom: 20px;}
             .tabel-wrap { overflow-x: auto; }
             table { min-width: 560px; }
         }
@@ -90,6 +143,42 @@ $daftarPesan = $guestbook->ambilSemua();
     </div>
 
     <div class="container">
+
+        <form method="post" action="guestbook.php" novalidate>
+            <div class="row">
+                <div class="card">
+                    <label for="nama">Nama</label>
+                    <input type="text" id="nama" name="nama" placeholder="Masukkan nama"
+                           value="<?= e($old['nama']) ?>">
+                    <?php if (isset($errors['nama'])): ?>
+                        <span class="error"><?= e($errors['nama']) ?></span>
+                    <?php endif; ?>
+                </div>
+
+                <div class="card">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="Masukkan alamat email"
+                           value="<?= e($old['email']) ?>">
+                    <?php if (isset($errors['email'])): ?>
+                        <span class="error"><?= e($errors['email']) ?></span>
+                    <?php endif; ?>
+                </div>
+            </div>
+
+            <div class="card">
+                <label for="pesan">Pesan</label>
+                <textarea id="pesan" name="pesan"
+                          placeholder="Masukkan kesan dan pesan"><?= e($old['pesan']) ?></textarea>
+                <?php if (isset($errors['pesan'])): ?>
+                    <span class="error"><?= e($errors['pesan']) ?></span>
+                <?php endif; ?>
+
+                <div class="btn-wrap">
+                    <button type="submit" class="btn">Kirim</button>
+                </div>
+            </div>
+        </form>
+
         <h2 class="judul">Daftar Pesan</h2>
         <div class="tabel-wrap">
             <table>
