@@ -1,5 +1,6 @@
 <?php
 declare(strict_types=1);
+session_start();
 
 require_once __DIR__ . '/classes/GuestBook.php';
 
@@ -28,12 +29,25 @@ function e(string $str): string
     return htmlspecialchars($str, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
 }
 
+/* Token CSRF */
+
+if (empty($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
+
 $errors = [];
 $old = ['nama' => '', 'email' => '', 'pesan' => ''];
 
 /* Proses form */
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $token = $_POST['csrf_token'] ?? '';
+
+    if (!hash_equals($_SESSION['csrf_token'], $token)) {
+        http_response_code(403);
+        exit('Token CSRF tidak valid.');
+    }
+
     $old['nama']  = trim((string)($_POST['nama']  ?? ''));
     $old['email'] = trim((string)($_POST['email'] ?? ''));
     $old['pesan'] = trim((string)($_POST['pesan'] ?? ''));
@@ -169,6 +183,8 @@ $daftarPesan = $guestbook->ambilSemua();
         <?php endif; ?>
 
         <form method="post" action="guestbook.php" novalidate>
+            <input type="hidden" name="csrf_token" value="<?= e($_SESSION['csrf_token']) ?>">
+
             <div class="row">
                 <div class="card">
                     <label for="nama">Nama</label>
