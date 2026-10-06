@@ -57,13 +57,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (empty($errors)) {
         try {
             $guestbook->simpan($old['nama'], $old['email'], $old['pesan']);
-            $old = ['nama' => '', 'email' => '', 'pesan' => ''];
+            $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+            $_SESSION['flash'] = 'Terima kasih, pesan Anda berhasil dikirim.';
+            header('Location: guestbook.php');
+            exit;
+
         } catch (PDOException $e) {
             error_log($e->getMessage());
             $errors['umum'] = 'Terjadi kesalahan saat menyimpan pesan.';
         }
     }
 }
+
+$flash = $_SESSION['flash'] ?? null;
+unset($_SESSION['flash']);
 
 $daftarPesan = $guestbook->ambilSemua();
 ?>
@@ -147,6 +154,7 @@ $daftarPesan = $guestbook->ambilSemua();
         .btn:hover { filter: brightness(1.12); }
 
         .error { display: block; color: #b00020; font-size: 0.82rem; margin-top: 6px; }
+        .success { background: #e6f4ea; color: #1e6b34; padding: 10px 14px; border-radius: 8px; margin-bottom: 20px; }
         .alert { background: #fdecea; color: #b00020; padding: 10px 14px; border-radius: 8px; margin-bottom: 20px; }
 
         /* Tabel */
@@ -178,6 +186,10 @@ $daftarPesan = $guestbook->ambilSemua();
     </div>
 
     <div class="container">
+        <?php if ($flash): ?>
+            <div class="success"><?= e($flash) ?></div>
+        <?php endif; ?>
+
         <?php if (isset($errors['umum'])): ?>
             <div class="alert"><?= e($errors['umum']) ?></div>
         <?php endif; ?>
