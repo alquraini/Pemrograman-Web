@@ -1,59 +1,148 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 📚 Perpustakaan Mini (Daftar Buku)
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Aplikasi web sederhana untuk mengelola data buku, dibangun dengan **Laravel**, **Blade**, dan **Tailwind CSS**. Mendukung operasi CRUD lengkap, pencarian, validasi form, dan pembagian halaman (pagination).
 
-## About Laravel
+Dibuat sebagai tugas mata kuliah **Pemrograman Web**.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Fitur
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- Menampilkan daftar buku dengan pagination (5 buku per halaman)
+- Mencari buku berdasarkan judul atau penulis
+- Menambah buku baru dengan validasi form
+- Melihat detail buku
+- Mengubah data buku
+- Menghapus buku (dengan konfirmasi)
+- Pesan sukses (flash message) setelah setiap aksi
+- Data contoh lewat seeder
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Teknologi
 
-## Learning Laravel
+| Teknologi | Keterangan |
+|---|---|
+| Laravel 12 | Framework PHP (pola MVC) |
+| Blade | Template engine untuk tampilan |
+| Tailwind CSS 4 | Styling dengan utility class |
+| Vite | Build tool untuk aset CSS/JS |
+| SQLite | Database bawaan Laravel |
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+## Prasyarat
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- PHP 8.2 atau lebih baru
+- Composer
+- Node.js dan npm
+- Git
 
-## Laravel Sponsors
+## Instalasi
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+1. Clone repository:
 
-### Premium Partners
+   ```bash
+   git clone https://github.com/USERNAME/NAMA-REPO.git
+   cd NAMA-REPO/daftar-buku
+   ```
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+2. Pasang dependensi PHP dan Node.js:
 
-## Contributing
+   ```bash
+   composer install
+   npm install
+   ```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+3. Salin file environment dan buat application key:
 
-## Code of Conduct
+   ```bash
+   cp .env.example .env
+   php artisan key:generate
+   ```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+   Di Windows PowerShell, ganti `cp` dengan `copy`:
 
-## Security Vulnerabilities
+   ```powershell
+   copy .env.example .env
+   ```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+4. Pastikan `.env` memakai SQLite:
 
-## License
+   ```env
+   DB_CONNECTION=sqlite
+   ```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+   Jika file `database/database.sqlite` belum ada, buat file kosong dengan nama tersebut.
+
+5. Jalankan migration dan seeder:
+
+   ```bash
+   php artisan migrate
+   php artisan db:seed --class=BukuSeeder
+   ```
+
+## Menjalankan Aplikasi
+
+Buka dua terminal:
+
+```bash
+# Terminal 1: server Laravel
+php artisan serve
+
+# Terminal 2: Vite + Tailwind
+npm run dev
+```
+
+Lalu buka <http://127.0.0.1:8000> di browser. Alamat `/` otomatis diarahkan ke `/buku`.
+
+Alternatif satu terminal: `composer run dev`.
+
+## Struktur Penting
+
+```
+daftar-buku/
+├── app/
+│   ├── Http/Controllers/BukuController.php   # Logika CRUD dan pencarian
+│   └── Models/Buku.php                       # Model Buku
+├── database/
+│   ├── migrations/…_create_buku_table.php    # Struktur tabel buku
+│   └── seeders/BukuSeeder.php                # Data contoh
+├── resources/views/
+│   ├── layouts/app.blade.php                 # Kerangka halaman
+│   └── buku/
+│       ├── index.blade.php                   # Daftar buku
+│       ├── create.blade.php                  # Form tambah
+│       ├── edit.blade.php                    # Form ubah
+│       ├── show.blade.php                    # Detail buku
+│       └── _form.blade.php                   # Isian form bersama
+└── routes/web.php                            # Daftar route
+```
+
+## Route
+
+| Method | URL | Nama Route | Fungsi |
+|---|---|---|---|
+| GET | `/buku` | `buku.index` | Daftar buku |
+| GET | `/buku/create` | `buku.create` | Form tambah |
+| POST | `/buku` | `buku.store` | Simpan buku baru |
+| GET | `/buku/{buku}` | `buku.show` | Detail buku |
+| GET | `/buku/{buku}/edit` | `buku.edit` | Form ubah |
+| PUT/PATCH | `/buku/{buku}` | `buku.update` | Simpan perubahan |
+| DELETE | `/buku/{buku}` | `buku.destroy` | Hapus buku |
+
+## Struktur Tabel `buku`
+
+| Kolom | Tipe | Keterangan |
+|---|---|---|
+| `id` | bigint | Primary key |
+| `judul` | string | Wajib diisi |
+| `penulis` | string | Wajib diisi |
+| `tahun_terbit` | smallint | Wajib, minimal 1000 dan tidak melebihi tahun ini |
+| `sinopsis` | text | Opsional |
+| `created_at`, `updated_at` | timestamp | Diisi otomatis |
+
+## Perintah Berguna
+
+| Perintah | Fungsi |
+|---|---|
+| `php artisan route:list --path=buku` | Melihat semua route buku |
+| `php artisan migrate:fresh --seed` | Mengulang database dari nol beserta data contoh |
+| `php artisan migrate:status` | Mengecek status migration |
+| `npm run build` | Membuat CSS/JS versi produksi |
+
+> **Catatan:** `migrate:fresh` menghapus seluruh data. Gunakan hanya saat pengembangan. Agar `--seed` menjalankan `BukuSeeder`, tambahkan `$this->call(BukuSeeder::class);` di `DatabaseSeeder.php`.
