@@ -11,7 +11,7 @@
             @include('buku._form')
 
             <div class="mt-6 flex gap-3">
-                <button class="bg-indigo-600 text-white px-5 py-2 rounded-lg hover:bg-indigo-700">Simpan</button>
+                <button class="bg-sky-700 text-white px-5 py-2 rounded-lg hover:bg-sky-200">Simpan</button>
                 <a href="{{ route('buku.index') }}" class="px-5 py-2 rounded-lg border border-slate-300 hover:bg-slate-50">Batal</a>
             </div>
         </form>
